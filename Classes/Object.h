@@ -3,21 +3,21 @@
 
 USING_NS_CC;
 
-class Objectt
+class MyObject
 {
 public:
-	virtual void Update() = 0;
+	virtual void Update(float deltaTime) = 0;
 	virtual void Init() = 0;
-	Objectt();
-	~Objectt();
+	MyObject();
+	~MyObject();
 protected:
 	Sprite *m_sprite;
 };
-Objectt::Objectt()
+MyObject::MyObject()
 {
 
 }
-Objectt::~Objectt()
+MyObject::~MyObject()
 {
 }
 

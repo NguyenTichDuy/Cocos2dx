@@ -43,7 +43,7 @@ using namespace CocosDenshion;
 
 USING_NS_CC;
 
-static cocos2d::Size designResolutionSize = cocos2d::Size(512, 1024);
+static cocos2d::Size designResolutionSize = cocos2d::Size(512, 512);
 
 
 AppDelegate::AppDelegate()
@@ -90,7 +90,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     }
 
     // turn on display FPS
-    director->setDisplayStats(true);
+    director->setDisplayStats(false);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0f / 60);
