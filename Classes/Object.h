@@ -10,14 +10,10 @@ public:
 	virtual void Init() = 0;
 	MyObject();
 	virtual ~MyObject();
+
+	Sprite *getSprite();
 protected:
 	Sprite *m_sprite;
 };
-MyObject::MyObject()
-{
 
-}
-MyObject::~MyObject()
-{
-}
 
