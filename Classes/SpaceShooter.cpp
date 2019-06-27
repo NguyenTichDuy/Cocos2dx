@@ -31,7 +31,10 @@ void SpaceShooter::Init()
 	screenSize = Director::getInstance()->getVisibleSize();
 
 	// set space shooter
-	m_sprite = ResourceManager::getInstance()->GetSpriteById(ID_SPACE_SHIP);
+
+	Sprite *sprite = ResourceManager::getInstance()->GetSpriteById(ID_SPACE_SHIP);
+
+	m_sprite = DuplicateSprite(sprite);
 	m_sprite->removeFromParent();
 
 	m_sprite->setPosition(Vec2(screenSize.width / 2, screenSize.height / 3));
