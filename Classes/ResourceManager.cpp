@@ -2,6 +2,8 @@
 
 ResourceManager *ResourceManager::s_instance = nullptr;
 
+int ResourceManager::countPoint = 0;
+
 ResourceManager::ResourceManager()
 {
 }
@@ -129,9 +131,6 @@ Label* ResourceManager::GetLabelById(short id)
 	map<short, Label*>::iterator iter = m_labels.find(id);
 	return iter->second;
 }
-
-
-
 
 
 

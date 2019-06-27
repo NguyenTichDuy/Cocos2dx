@@ -83,6 +83,7 @@ void SpaceShooter::Collision(std::vector<Rock*> _m_rocks)
 			{
 				i->getSprite()->setVisible(false);
 				rock->getSprite()->setVisible(false);
+				ResourceManager::getInstance()->countPoint++;
 			}
 		}
 	}

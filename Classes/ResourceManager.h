@@ -17,6 +17,7 @@
 #define ID_AESTROID_DARK 3
 #define ID_SPACE_SHIP 4
 #define ID_BULLET 2
+#define ID_LABEL_ARIAL 1
 
 #define SUM_BULLET 30
 #define SIZE_FONTS 24
@@ -38,11 +39,15 @@ public:
 	Sprite* GetSpriteById(short id);
 	Button* GetButtonById(short id);
 	Label* GetLabelById(short id);
+
+	static int countPoint;
+
 	~ResourceManager();
 private:
 	ResourceManager();
 	
 	static ResourceManager *s_instance;
+
 
 	string m_dataFolderPath;
 	map<short, Sprite*> m_sprites;

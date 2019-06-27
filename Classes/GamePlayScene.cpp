@@ -19,6 +19,7 @@ Scene * GamePlay::createScene()
 bool GamePlay::init()
 {
 	screenSize = Director::getInstance()->getVisibleSize();
+	ResourceManager::getInstance()->countPoint = 0;
 	// add background
 	auto background = ResourceManager::getInstance()->GetSpriteById(ID_BACKGROUND);
 	background->removeFromParent();
