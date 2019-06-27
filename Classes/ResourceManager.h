@@ -18,6 +18,8 @@
 #define ID_SPACE_SHIP 4
 #define ID_BULLET 2
 #define ID_LABEL_ARIAL 1
+#define ID_BUTTON_REPLAY 1
+#define ID_BUTTON_HOME 2
 
 #define SUM_BULLET 30
 #define SIZE_FONTS 24

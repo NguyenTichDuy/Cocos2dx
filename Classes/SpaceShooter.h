@@ -7,6 +7,7 @@
 #include"LoadingScene.h"
 #include"ResourceManager.h"
 
+
 class SpaceShooter :public MyObject
 {
 private:

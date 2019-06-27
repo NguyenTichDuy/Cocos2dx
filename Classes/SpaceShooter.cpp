@@ -2,6 +2,7 @@
 #include"ResourceManager.h"
 #include "Bullet.h"
 #include"GameOverScene.h"
+#include"GamePlayScene.h"
 
 SpaceShooter::SpaceShooter(Scene *scene)
 {
