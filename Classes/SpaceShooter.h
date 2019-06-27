@@ -4,6 +4,7 @@
 #include"MyObject.h"
 #include<list>
 #include"Rock.h"
+#include"LoadingScene.h"
 
 class SpaceShooter :public MyObject
 {

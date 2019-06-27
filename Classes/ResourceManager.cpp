@@ -113,6 +113,7 @@ void ResourceManager::Load(string fileName)
 Sprite* ResourceManager::GetSpriteById(short id)
 {
 	map<short, Sprite*>::iterator iter = m_sprites.find(id);
+	iter->second->retain();
 	return iter->second;
 }
 

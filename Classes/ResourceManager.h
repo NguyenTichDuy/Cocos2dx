@@ -18,9 +18,7 @@
 #define ID_SPACE_SHIP 4
 #define ID_BULLET 2
 
-#define SPEED_BULLET 20
 #define SUM_BULLET 30
-#define Distance_Rock 5
 #define SIZE_FONTS 24
 
 USING_NS_CC;

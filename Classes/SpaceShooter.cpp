@@ -1,6 +1,7 @@
 #include "SpaceShooter.h"
 #include"ResourceManager.h"
 #include "Bullet.h"
+#include"GameOverScene.h"
 
 SpaceShooter::SpaceShooter(Scene *scene)
 {
@@ -16,6 +17,8 @@ SpaceShooter::SpaceShooter(Scene *scene)
 	}
 
 	scene->addChild(m_sprite, 0);
+
+
 }
 
 SpaceShooter::~SpaceShooter()
@@ -30,19 +33,25 @@ void SpaceShooter::Init()
 	m_sprite = ResourceManager::getInstance()->GetSpriteById(ID_SPACE_SHIP);
 	m_sprite->removeFromParent();
 
-	m_sprite->setPosition(Vec2(screenSize.width / 2, screenSize.height / 2));
+	m_sprite->setPosition(Vec2(screenSize.width / 2, screenSize.height / 3));
 	m_sprite->setScale(0.5);
-
 }
 
 void SpaceShooter::Update(float deltaTime)
 {
-	Shoot();
+	static float count = 0;
+	count += 0.1;
+	if (count >= 1)
+	{
+		Shoot();
+		count = 0;
+	}
 
 	for (auto i : m_bullets)
 	{
 		i->Update(deltaTime);
 	}
+
 }
 
 void SpaceShooter::Shoot()
@@ -60,11 +69,21 @@ void SpaceShooter::Shoot()
 
 void SpaceShooter::Collision(std::vector<Rock*> _m_rocks)
 {
+
 	for (auto rock : _m_rocks)
 	{
-		//if (rock->getSprite()->getBoundingBox()->intersectsRect(m_sprite->getBoundingBox()))
+		if (this->m_sprite->getBoundingBox().intersectsRect(rock->getSprite()->getBoundingBox()))
 		{
 
+			Director::getInstance()->replaceScene(GameOverScene::createScene());
+		}
+		for (auto  i : m_bullets)
+		{
+			if (i->getSprite()->getBoundingBox().intersectsRect(rock->getSprite()->getBoundingBox()))
+			{
+				i->getSprite()->setVisible(false);
+				rock->getSprite()->setVisible(false);
+			}
 		}
 	}
 }

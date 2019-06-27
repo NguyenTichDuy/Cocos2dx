@@ -53,9 +53,10 @@ bool GamePlay::init()
 
 	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, m_spaceShooter->getSprite());
 
+	// count point 
+	static int countPoint = 0;
+
 	//
-	//this->update(10);
-	Sleep(100);
 	this->scheduleUpdate();
 
 	return true;
@@ -65,11 +66,16 @@ void GamePlay::update(float deltaTime)
 {
 
 	this->GenerateRock();
+	
 	for (auto r : m_rocks)
 	{
-		r->Update(Distance_Rock);
+		r->Update(deltaTime);
 	}
-	m_spaceShooter->Update(SPEED_BULLET);
+	m_spaceShooter->Update(deltaTime);
+
+	m_spaceShooter->Collision(m_rocks);
+
+
 }
 
 void GamePlay::GenerateRock()
