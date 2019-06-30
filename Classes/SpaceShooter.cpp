@@ -78,7 +78,9 @@ void SpaceShooter::Collision(std::vector<Rock*> _m_rocks)
 	{
 		if (this->m_sprite->getBoundingBox().intersectsRect(rock->getSprite()->getBoundingBox()))
 		{
-
+			auto boomAudio = SimpleAudioEngine::getInstance();
+			boomAudio->playEffect("boom.wav", false, 1, 1, 1);
+			boomAudio->setEffectsVolume(1.0f);
 			Director::getInstance()->replaceScene(GameOverScene::createScene());
 		}
 		for (auto  i : m_bullets)

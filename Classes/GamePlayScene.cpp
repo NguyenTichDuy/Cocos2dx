@@ -22,10 +22,9 @@ bool GamePlay::init()
 	// add background sound
 	audioBackground = SimpleAudioEngine::getInstance();
 
-	audioBackground->preloadBackgroundMusic("Monody.mp3");
-	audioBackground->playBackgroundMusic("Monody.mp3", true);
+	audioBackground->preloadBackgroundMusic("musicBackground.mp3");
+	audioBackground->playBackgroundMusic("musicBackground.mp3", true);
 	audioBackground->setBackgroundMusicVolume(0.1);
-
 
 	// add background
 	auto background = ResourceManager::getInstance()->GetSpriteById(ID_BACKGROUND);
