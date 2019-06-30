@@ -5,7 +5,9 @@
 #include<string>
 #include<fstream>
 #include<iostream>
+#include<SimpleAudioEngine.h>
 
+using namespace CocosDenshion;
 
 #define ID_LOADINGBAR 5
 #define ID_BACKGROUND 0

@@ -24,6 +24,12 @@ cocos2d::Scene * MainMenuClass::createScene()
 bool MainMenuClass::init()
 {
 	screenSize = Director::getInstance()->getVisibleSize();
+	// add background audio
+
+	audioBackground = SimpleAudioEngine::getInstance();
+
+	audioBackground->playBackgroundMusic("Unity.mp3", true);
+	audioBackground->setBackgroundMusicVolume(0.05f);
 	// add background
 	background = ResourceManager::getInstance()->GetSpriteById(ID_BACKGROUND);
 	background->removeFromParent();
@@ -89,7 +95,9 @@ void MainMenuClass::playCallback(Ref *sender)
 	auto gotoNext = CallFunc::create([]()
 	{
 		Director::getInstance()->replaceScene(TransitionFadeDown::create(0.5, GamePlay::createScene()));
+
 	});
+	this->audioBackground->stopBackgroundMusic();
 	auto sequence = Sequence::create(gotoNext, nullptr);
 	this->runAction(sequence);
 }

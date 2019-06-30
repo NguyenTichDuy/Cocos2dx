@@ -15,6 +15,7 @@ public:
 
 	void playCallback(Ref *sender);
 
+	SimpleAudioEngine *audioBackground;
 
 	CREATE_FUNC(MainMenuClass);
 

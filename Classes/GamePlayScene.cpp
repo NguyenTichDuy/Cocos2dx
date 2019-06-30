@@ -34,6 +34,7 @@ bool GamePlay::init()
 			screenSize.height / background->getContentSize().height);
 		this->addChild(background, -10);
 	}
+
 	// add Space Shooter
 
 	m_spaceShooter = new SpaceShooter(this);
