@@ -16,6 +16,7 @@ private:
 	Size screenSize;
 	SpaceShooter *m_spaceShooter;
 	std::vector <Rock*> m_rocks;
+	Sprite *m_background[3];
 
 public:
 	GamePlay();

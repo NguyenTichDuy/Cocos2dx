@@ -35,7 +35,7 @@ void Rock::Init()
 
 	auto sprite = ResourceManager::getInstance()->GetSpriteById(ID_AESTROID_DARK);
 
-	m_sprite = DuplicateSprite(sprite);
+	m_sprite = ResourceManager::getInstance()->DuplicateSprite(sprite);
 
 	Sleep(100);
 	float width = rand() % (int)(screenSize.width);

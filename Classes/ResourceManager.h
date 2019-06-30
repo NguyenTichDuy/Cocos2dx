@@ -44,6 +44,8 @@ public:
 	Button* GetButtonById(short id);
 	Label* GetLabelById(short id);
 
+	Sprite * DuplicateSprite(Sprite *sprite);
+
 	static int countPoint;
 
 	~ResourceManager();

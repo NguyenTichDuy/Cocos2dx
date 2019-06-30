@@ -31,7 +31,7 @@ void Bullet::Init()
 
 	Sprite *sprite = ResourceManager::getInstance()->GetSpriteById(ID_BULLET);
 	
-	m_sprite = DuplicateSprite(sprite);
+	m_sprite = ResourceManager::getInstance()->DuplicateSprite(sprite);
 
 	m_sprite->setVisible(false);
 }
