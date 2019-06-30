@@ -1,5 +1,4 @@
 #include"GamePlayScene.h"
-#include"ResourceManager.h"
 #include<Windows.h>
 #include"Bullet.h"
 
@@ -20,6 +19,14 @@ bool GamePlay::init()
 {
 	screenSize = Director::getInstance()->getVisibleSize();
 	ResourceManager::getInstance()->countPoint = 0;
+	// add background sound
+	audioBackground = SimpleAudioEngine::getInstance();
+
+	audioBackground->preloadBackgroundMusic("Monody.mp3");
+	audioBackground->playBackgroundMusic("Monody.mp3", true);
+	audioBackground->setBackgroundMusicVolume(0.1);
+
+
 	// add background
 	auto background = ResourceManager::getInstance()->GetSpriteById(ID_BACKGROUND);
 	background->removeFromParent();

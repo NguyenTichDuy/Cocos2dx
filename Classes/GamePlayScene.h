@@ -3,6 +3,8 @@
 #include"Rock.h"
 #include<vector>
 #include"SpaceShooter.h"
+#include"ResourceManager.h"
+
 
 #define SUM_ROCK 10
 USING_NS_CC;
@@ -22,6 +24,8 @@ public:
 	static Scene *createScene();
 
 	virtual bool init();
+
+	SimpleAudioEngine *audioBackground;
 
 	void update(float deltaTime) override;
 	void GenerateRock();
