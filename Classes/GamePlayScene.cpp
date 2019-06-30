@@ -1,5 +1,4 @@
 #include"GamePlayScene.h"
-#include"ResourceManager.h"
 #include<Windows.h>
 #include"Bullet.h"
 
@@ -19,20 +18,39 @@ Scene * GamePlay::createScene()
 bool GamePlay::init()
 {
 	screenSize = Director::getInstance()->getVisibleSize();
+	ResourceManager::getInstance()->countPoint = 0;
+	// add background sound
+	audioBackground = SimpleAudioEngine::getInstance();
+
+	audioBackground->preloadBackgroundMusic("musicBackground.mp3");
+	audioBackground->playBackgroundMusic("musicBackground.mp3", true);
+	audioBackground->setBackgroundMusicVolume(0.1);
+
 	// add background
 	auto background = ResourceManager::getInstance()->GetSpriteById(ID_BACKGROUND);
-	background->removeFromParent();
-	if (background == nullptr)
-	{
-		printf("error ID_BACKGROUND");
-	}
-	else
-	{
-		background->setPosition(Vec2(screenSize.width / 2, screenSize.height / 2));
-		background->setScale(screenSize.width / background->getContentSize().width,
-			screenSize.height / background->getContentSize().height);
-		this->addChild(background, -10);
-	}
+
+	m_background[0] = ResourceManager::getInstance()->DuplicateSprite(background);
+	m_background[1] = ResourceManager::getInstance()->DuplicateSprite(background);
+	m_background[2] = ResourceManager::getInstance()->DuplicateSprite(background);
+
+	//--------------background-------------
+	m_background[0]->setAnchorPoint(Vec2(0, 0));
+	m_background[0]->setPosition(Vec2(0, screenSize.height));
+	m_background[0]->setScale(screenSize.width / m_background[0]->getContentSize().width,
+	screenSize.height / m_background[0]->getContentSize().height);
+	this->addChild(m_background[0], -10);
+	//-------------background1-------------
+	m_background[1]->setAnchorPoint(Vec2(0, 0));
+	m_background[1]->setPosition(Vec2(0, 0));
+	m_background[1]->setScale(screenSize.width / m_background[1]->getContentSize().width,
+		screenSize.height / m_background[1]->getContentSize().height);
+	this->addChild(m_background[1], -10);
+	//-------------background2-------------
+	m_background[2]->setAnchorPoint(Vec2(0, 0));
+	m_background[2]->setPosition(Vec2(0, -screenSize.height));
+	m_background[2]->setScale(screenSize.width / m_background[2]->getContentSize().width,
+		screenSize.height / m_background[2]->getContentSize().height);
+	this->addChild(m_background[2], -10);
 	// add Space Shooter
 
 	m_spaceShooter = new SpaceShooter(this);
@@ -53,9 +71,10 @@ bool GamePlay::init()
 
 	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, m_spaceShooter->getSprite());
 
+	// count point 
+	static int countPoint = 0;
+
 	//
-	//this->update(10);
-	Sleep(100);
 	this->scheduleUpdate();
 
 	return true;
@@ -65,11 +84,35 @@ void GamePlay::update(float deltaTime)
 {
 
 	this->GenerateRock();
+	
 	for (auto r : m_rocks)
 	{
-		r->Update(Distance_Rock);
+		r->Update(deltaTime);
 	}
-	m_spaceShooter->Update(SPEED_BULLET);
+	m_spaceShooter->Update(deltaTime);
+
+	m_spaceShooter->Collision(m_rocks);
+
+	//run background
+	m_background[0]->setPositionY(m_background[0]->getPositionY() - deltaTime * 300);
+	m_background[1]->setPositionY(m_background[1]->getPositionY() - deltaTime * 300);
+	m_background[2]->setPositionY(m_background[2]->getPositionY() - deltaTime * 300);
+
+	if (m_background[0]->getPositionY() <= -screenSize.height * 2)
+	{
+		m_background[0]->setPositionY(m_background[1]->getPositionY() 
+			+ screenSize.height);
+	}
+	if (m_background[1]->getPositionY() <= -screenSize.height * 2)
+	{
+		m_background[1]->setPositionY(m_background[2]->getPositionY()
+			+ screenSize.height);
+	}
+	if (m_background[2]->getPositionY() <= -screenSize.height * 2)
+	{
+		m_background[2]->setPositionY(m_background[0]->getPositionY()
+			+ screenSize.height);
+	}
 }
 
 void GamePlay::GenerateRock()

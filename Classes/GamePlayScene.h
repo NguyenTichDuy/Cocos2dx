@@ -3,6 +3,8 @@
 #include"Rock.h"
 #include<vector>
 #include"SpaceShooter.h"
+#include"ResourceManager.h"
+
 
 #define SUM_ROCK 10
 USING_NS_CC;
@@ -14,6 +16,7 @@ private:
 	Size screenSize;
 	SpaceShooter *m_spaceShooter;
 	std::vector <Rock*> m_rocks;
+	Sprite *m_background[3];
 
 public:
 	GamePlay();
@@ -22,6 +25,8 @@ public:
 	static Scene *createScene();
 
 	virtual bool init();
+
+	SimpleAudioEngine *audioBackground;
 
 	void update(float deltaTime) override;
 	void GenerateRock();

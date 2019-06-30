@@ -19,7 +19,7 @@ void Bullet::Update(float deltaTime)
 	}
 	else if (m_sprite->isVisible())
 	{
-		int y = m_sprite->getPositionY() + deltaTime;
+		int y = m_sprite->getPositionY() + deltaTime * 500;
 		m_sprite->setPositionY(y);
 	}
 }
@@ -31,7 +31,7 @@ void Bullet::Init()
 
 	Sprite *sprite = ResourceManager::getInstance()->GetSpriteById(ID_BULLET);
 	
-	m_sprite = DuplicateSprite(sprite);
+	m_sprite = ResourceManager::getInstance()->DuplicateSprite(sprite);
 
 	m_sprite->setVisible(false);
 }

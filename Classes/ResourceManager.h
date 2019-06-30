@@ -5,7 +5,9 @@
 #include<string>
 #include<fstream>
 #include<iostream>
+#include<SimpleAudioEngine.h>
 
+using namespace CocosDenshion;
 
 #define ID_LOADINGBAR 5
 #define ID_BACKGROUND 0
@@ -17,10 +19,11 @@
 #define ID_AESTROID_DARK 3
 #define ID_SPACE_SHIP 4
 #define ID_BULLET 2
+#define ID_LABEL_ARIAL 1
+#define ID_BUTTON_REPLAY 1
+#define ID_BUTTON_HOME 2
 
-#define SPEED_BULLET 20
 #define SUM_BULLET 30
-#define Distance_Rock 5
 #define SIZE_FONTS 24
 
 USING_NS_CC;
@@ -40,11 +43,17 @@ public:
 	Sprite* GetSpriteById(short id);
 	Button* GetButtonById(short id);
 	Label* GetLabelById(short id);
+
+	Sprite * DuplicateSprite(Sprite *sprite);
+
+	static int countPoint;
+
 	~ResourceManager();
 private:
 	ResourceManager();
 	
 	static ResourceManager *s_instance;
+
 
 	string m_dataFolderPath;
 	map<short, Sprite*> m_sprites;
