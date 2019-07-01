@@ -12,7 +12,13 @@ GamePlay::~GamePlay()
 
 Scene * GamePlay::createScene()
 {
-	return GamePlay::create();
+	auto scene = Scene::createWithPhysics();
+
+	scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+
+	auto layer = GamePlay::create();
+	scene->addChild(layer);
+	return scene;
 }
 
 bool GamePlay::init()
@@ -25,13 +31,27 @@ bool GamePlay::init()
 	audioBackground->preloadBackgroundMusic("musicBackground.mp3");
 	audioBackground->playBackgroundMusic("musicBackground.mp3", true);
 	audioBackground->setBackgroundMusicVolume(0.1);
+	// add physicsbackground
+	auto backgroundWall = Sprite::create();
+	backgroundWall->setPosition(screenSize.width / 2, screenSize.height / 2);
+	
+	auto physicBackground = PhysicsBody::createEdgeBox(screenSize, PHYSICSBODY_MATERIAL_DEFAULT, 3);
 
+	physicBackground->getShape(0)->setDensity(1.0f);
+	physicBackground->getShape(0)->setFriction(0.0f);
+	physicBackground->getShape(0)->setRestitution(1.0f);
+	physicBackground->setContactTestBitmask(0x000001);
+
+	backgroundWall->setPhysicsBody(physicBackground);
+	this->addChild(backgroundWall);
+	physicBackground->setTag(0);
 	// add background
 	auto background = ResourceManager::getInstance()->GetSpriteById(ID_BACKGROUND);
 
 	m_background[0] = ResourceManager::getInstance()->DuplicateSprite(background);
 	m_background[1] = ResourceManager::getInstance()->DuplicateSprite(background);
 	m_background[2] = ResourceManager::getInstance()->DuplicateSprite(background);
+	// add physic for background
 
 	//--------------background-------------
 	m_background[0]->setAnchorPoint(Vec2(0, 0));
