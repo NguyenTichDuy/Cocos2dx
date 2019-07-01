@@ -9,7 +9,7 @@ public:
 	Bullet(Scene* scene);
 	~Bullet();
 
-	void Update(float deltaTime);
+	void Update(float deltaTime) override;
 
 	void Init() override;
 

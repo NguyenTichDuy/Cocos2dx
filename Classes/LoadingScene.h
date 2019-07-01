@@ -10,9 +10,9 @@ class LoadingScene :public cocos2d::Scene
 public:
 	static Scene * createScene();
 
-	virtual bool init();
+	virtual bool init() override;
 
-	void update(float deltaTime);
+	void update(float deltaTime) override;
 
 	CREATE_FUNC(LoadingScene);
 

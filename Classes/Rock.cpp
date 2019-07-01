@@ -2,7 +2,6 @@
 #include"GamePlayScene.h"
 #include"ResourceManager.h"
 #include<list>
-#include<Windows.h>
 
 
 Rock::Rock(Scene *scene)
@@ -37,7 +36,6 @@ void Rock::Init()
 
 	m_sprite = ResourceManager::getInstance()->DuplicateSprite(sprite);
 
-	Sleep(100);
 	float width = rand() % (int)(screenSize.width);
 	float height = rand() %(int)(screenSize.height) + screenSize.height;
 

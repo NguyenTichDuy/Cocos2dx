@@ -11,7 +11,7 @@ public:
 
 	static Scene* createScene();
 
-	virtual bool init();
+	virtual bool init() override;
 
 	void playCallback(Ref *sender);
 

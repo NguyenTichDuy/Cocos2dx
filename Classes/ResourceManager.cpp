@@ -35,8 +35,9 @@ void ResourceManager::Init(const std::string _m_dataFolderPath)
 void ResourceManager::Load(string fileName)
 {
 
-	std::ifstream fileInput;
-	fileInput.open(fileName);
+	auto fileUtis = FileUtils::getInstance()->getStringFromFile(fileName);
+	istringstream fileInput(fileUtis.c_str());
+
 	string stringIgnore;
 	int length;
 	short id;
@@ -108,7 +109,6 @@ void ResourceManager::Load(string fileName)
 
 			m_labels.insert(pair<short, Label*>(id, myLabel));
 		}
-		fileInput.close();
 	}
 }
 
