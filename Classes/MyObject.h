@@ -14,8 +14,6 @@ public:
 	Sprite *getSprite();
 	void setSprite(Sprite *sprite);
 
-	Sprite * DuplicateSprite(Sprite *sprite);
-
 protected:
 	Sprite *m_sprite;
 };

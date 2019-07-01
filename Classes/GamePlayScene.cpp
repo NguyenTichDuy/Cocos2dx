@@ -1,5 +1,4 @@
 #include"GamePlayScene.h"
-#include<Windows.h>
 #include"Bullet.h"
 
 GamePlay::GamePlay()
@@ -37,10 +36,12 @@ bool GamePlay::init()
 	
 	auto physicBackground = PhysicsBody::createEdgeBox(screenSize, PHYSICSBODY_MATERIAL_DEFAULT, 3);
 
+	physicBackground->setCategoryBitmask(0x01);
+	physicBackground->setCollisionBitmask(0x02);
 	physicBackground->getShape(0)->setDensity(1.0f);
 	physicBackground->getShape(0)->setFriction(0.0f);
 	physicBackground->getShape(0)->setRestitution(1.0f);
-	physicBackground->setContactTestBitmask(0x000001);
+	//physicBackground->setContactTestBitmask(0x000001);
 
 	backgroundWall->setPhysicsBody(physicBackground);
 	this->addChild(backgroundWall);
@@ -75,6 +76,7 @@ bool GamePlay::init()
 
 	m_spaceShooter = new SpaceShooter(this);
 
+	
 	// add rock 
 	Rock *rock;
 	for (int i = 0; i < SUM_ROCK; i++)

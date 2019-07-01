@@ -39,6 +39,22 @@ void SpaceShooter::Init()
 
 	m_sprite->setPosition(Vec2(screenSize.width / 2, screenSize.height / 3));
 	m_sprite->setScale(0.5);
+
+	// add physic for space shooter
+	auto physicSpaceShooter = PhysicsBody::createBox(Size(2, 2), PHYSICSBODY_MATERIAL_DEFAULT);
+
+	physicSpaceShooter->getShape(0)->setDensity(1.0f);
+	physicSpaceShooter->getShape(0)->setFriction(0.0f);
+	physicSpaceShooter->getShape(0)->setRestitution(1.0f);
+
+	physicSpaceShooter->setCategoryBitmask(0x03);
+	physicSpaceShooter->setCollisionBitmask(0x03);
+	//physicSpaceShooter->setContactTestBitmask(0x000002);
+	physicSpaceShooter->setGravityEnable(false);
+	physicSpaceShooter->setDynamic(false);
+
+	m_sprite->setPhysicsBody(physicSpaceShooter);
+
 }
 
 void SpaceShooter::Update(float deltaTime)

@@ -24,7 +24,7 @@ public:
 
 	static Scene *createScene();
 
-	virtual bool init();
+	virtual bool init() override;
 
 	SimpleAudioEngine *audioBackground;
 

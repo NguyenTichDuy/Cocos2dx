@@ -18,7 +18,7 @@ public:
 	SpaceShooter(Scene* scene);
 	~SpaceShooter();
 
-	void Init();
+	void Init() override;
 	void Update(float deltaTime) override;
 	void Shoot();
 	void Collision(std::vector<Rock*> _m_rocks);
